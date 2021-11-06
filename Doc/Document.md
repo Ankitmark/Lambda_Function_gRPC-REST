@@ -93,7 +93,7 @@ When logs are present between the timestamp.
 ![image](https://user-images.githubusercontent.com/20486562/140591734-fe65d85b-db16-4c08-9d21-18de6b8fabfb.png)
 
 
-### Deploying the serverless functions on AWS Lambda
+### Ceating and Deploying the serverless functions on AWS Lambda
 
 Follow the below instructions to deploy the lambda functions on AWS.
 
@@ -117,7 +117,8 @@ Follow the below instructions to deploy the lambda functions on AWS.
 
 The lambda function is now deployed on AWS. 
 
-### Exposing the API for accessing lambda functions using AWS API Gateway
+
+### Creating and Exposing the API for accessing lambda functions using AWS API Gateway
 
 1. Ensure that AWS CLI is installed and configured on your system. Follow this [guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) to know how to do so.
 2. Ensure that the user configured with your AWS CLI is having the proper IAM roles and permissions configured for modifying AWS API Gateway.
@@ -135,3 +136,39 @@ The lambda function is now deployed on AWS.
 9. In your browser, from the **Actions** dropdown, select **Deploy API**
 10. Choose **Deployment stage** as `[New Stage]` and **Stage Name** as `prod` and click on **Deploy** button
 11. The API is now deployed at the URL mentioned in **API: Dashboardr** page which can be used to invoke the lambda function by running the client as `sbt Client/run`.
+
+
+### API Gateway URL
+
+The API is deployed using AWS API Gateway at [ https://wyqnmppfe3.execute-api.us-east-1.amazonaws.com/prod/]( https://wyqnmppfe3.execute-api.us-east-1.amazonaws.com/prod/). 
+
+The API can also be used via a client, such as [Postman](https://www.getpostman.com/).
+
+**Sample Payload**
+
+```json
+{
+"start":"09:03",
+"interval":"00:12"
+}
+```
+
+**Sample Request**
+
+```
+curl --location --request POST 'https://wyqnmppfe3.execute-api.us-east-1.amazonaws.com/prod/grpc' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--data-raw '{
+    "start":"09:03",
+    "interval":"00:12"
+}'
+```
+
+**Sample Response**
+
+```
+HttpResponse(Log Not Found between TimeStamp 09:03 to 09:15
+,404,Map(Connection -> Vector(keep-alive), Content-Length -> Vector(47), Content-Type -> Vector(application/json), Date -> Vector(Sat, 06 Nov 2021 00:30:41 GMT), Status -> Vector(HTTP/1.1 404 Not Found), x-amz-apigw-id -> Vector(IWzrqEK9IAMFpnA=), x-amzn-RequestId -> Vector(ef63f48f-c0f3-42ec-9785-58e746d6800c), X-Amzn-Trace-Id -> Vector(Root=1-6185ccb0-70d71b6d1dac33961d556e41;Sampled=0)))
+```
+
