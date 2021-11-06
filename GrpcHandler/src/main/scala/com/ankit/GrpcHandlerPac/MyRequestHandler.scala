@@ -59,7 +59,7 @@ class MyRequestHandler extends RequestHandler[APIGatewayProxyRequestEvent, APIGa
     logger.log("Request Body:\n" + input.toString)
     logger.log("Raw Body:\n" + input.getBody)
 
-    // Convert JSON string and use ScalaPB to construct the `Expression`
+    // Convert JSON string and use ScalaPB to construct the `Input`
     val expression = JsonFormat.fromJsonString[Input](input.getBody)
     logger.log(s"Input expression : $expression")
 
@@ -101,7 +101,7 @@ class MyRequestHandler extends RequestHandler[APIGatewayProxyRequestEvent, APIGa
 
     lambdaLogger.log("REST request....")
 
-    // Convert JSON string and use ScalaPB to construct the `Expression`
+    // Convert JSON string and use ScalaPB to construct the `Input`
     val expression = JsonFormat.fromJsonString[Input](request.getBody)
     lambdaLogger.log(s"Input expression: $expression")
 
