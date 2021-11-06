@@ -15,8 +15,6 @@ class ClientTestSuite extends AnyFlatSpec with Matchers {
     config.getString("ApiInput.api-gateway-url") shouldBe "https://wyqnmppfe3.execute-api.us-east-1.amazonaws.com/prod/grpc"
   }
 
-  it should "obtain the  start time" in {
-    config.getString("ApiInput.timeinput.start") shouldBe "10:03"
-  }
+  
 
 }
