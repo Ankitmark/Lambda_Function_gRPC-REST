@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package = "com.ankit.protobuf";
+
+
+// The request message containing the time stamp.
+message Input {
+  string start = 1;
+  string interval = 2;
+}
+
+// The response message containing if log present or not
+message Response {
+  string message = 1;
+}
+
+
+// The Findlog service definition.
+service Findlog {
+  // Sends a input
+  rpc Find (Input) returns (Response);
+}
